@@ -1,5 +1,5 @@
 // Create two files named make-it-modular.js and mymodule.js.           
-                                                             
+//fs is module allows you to read, write update files on comp                                                  
 // The module must export a single function that takes three 
 const fs = require("fs");
 function filteredList(dir, extensionEnding, cb){
@@ -9,7 +9,9 @@ function filteredList(dir, extensionEnding, cb){
             return cb(err)
         }
         //iterate through list of files
-        for(let eachFile =0; i<data.length; eachFile++){
+        // for(let eachFile =0; eachFile<data.length; eachFile++){ CAN'T USE FOR B/C DOES NOT ALLOW FOR EDGE CASE OF NO FILES
+        
+        for (let eachFile of data){
             if(eachFile.split('.')[1] === extensionEnding) {
                 files.push(eachFile)
             }
