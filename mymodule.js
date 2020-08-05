@@ -3,7 +3,7 @@
 // The module must export a single function that takes three 
 const fs = require("fs");
 function filteredList(dir, extensionEnding, cb){
-    fs.readdir(dir, (err, data =>  { //reads contents of a dir
+    fs.readdir(dir, (err, data) =>  { //reads contents of a dir
         const files = []
         if(err){
             return cb(err)
@@ -17,7 +17,7 @@ function filteredList(dir, extensionEnding, cb){
         cb(err,files)
     } )                   
    
-}
+    }
 
 
 // The module must export a single function that takes three arguments: 
