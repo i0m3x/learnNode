@@ -10,7 +10,9 @@
 // original buffers are kept intact and copies are only done as necessary. 
 
 
+//buffer: byte stream
 
+//http: converts buffer into stream
 
 
 const http = require('http')
@@ -23,6 +25,7 @@ http.get(process.argv[2], (response) => {
     response.on('data', (data) => {
         allData += data
     })
+    //response is a stream
     response.on('end', () => {
         console.log(allData.length)
         console.log(allData)
@@ -51,3 +54,19 @@ http.get(process.argv[2], (response) => {
 //   address: '127.0.0.1',
 //   port: 80
 // }
+
+//SECOND SOLUTION
+// 'use strict'
+// const http = require('http')
+// const bl = require('bl')
+
+// http.get(process.argv[2], function (response) {
+//     response.pipe(bl(function(err,data){ //allows it to be writeable
+//         if(err){
+//             return console.error(err)
+//         }
+//         data =data.toString()
+//         console.log(data.length)
+//         console.log(data)
+//     }))
+// })
