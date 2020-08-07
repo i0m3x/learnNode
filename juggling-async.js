@@ -1,23 +1,38 @@
+//'google node request stream'
+
+// return request({
+//     method: "POST",
+//     url: response.stream.url,
+//     json: true,
+//     forever: true,
+//     body: {
+//       sessionid: response.stream.sessionid,
+//       symbols: symbolParams
+//     }
+//   }).on("data", onData)
+
+//https://stackoverflow.com/questions/44222394/how-can-i-start-stop-a-request-stream-with-node-js
+
 const http = require('http')
 const url1 = process.argv[2]
 const url2 = process.argv[3]
 const url3 = process.argv[4]
 const urlArr = [url1, url2, url3]
-const stringArr = ['', '', '']
-let counter = 0
-for (let i=0; i<urlArr.length; i++) {
+const stringArr = ['', '', '']  //empty array
+let counter = 0                 //initialize counter
+for (let i=0; i<urlArr.length; i++) {       //iterate through list of URLs
     const url = urlArr[i]
-    http.get(url, (response) => {
-        let str = ''
-        response.setEncoding('utf-8')
-        response.on('data', (data) => {
+    http.get(url, (response) => {   //write a http response 
+        let str = ''                //empty string
+        response.setEncoding('utf-8')   //make it not hashy
+        response.on('data', (data) => { //
             str += data
         })
         response.on('end', () => {
-            counter++
-            stringArr[i] = str
-            if (counter === stringArr.length) {
-                stringArr.forEach((string) => console.log(string))
+            counter++   //increment
+            stringArr[i] = str  //access value in array
+            if (counter === stringArr.length) {     //if length of array equals count, 3==3
+                stringArr.forEach((string) => console.log(string))  //print each in order
             }
         })
     })
